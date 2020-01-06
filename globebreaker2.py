@@ -8,14 +8,12 @@ screen = pygame.display.set_mode((800, 800))
 pygame.display.set_caption("globebreaker")
 CENTER = (400, 400)
 RADIUS = 350
-
+clock = pygame.time.Clock()
 satelliteCenter = (CENTER[0]+RADIUS, CENTER[1])
 satelliteCenter2 = (CENTER[0]+RADIUS , CENTER[1] )
 running = True
 
-screen.fill((152,206,231))
-pygame.draw.circle(screen, (71,153,192), CENTER, RADIUS)
-pygame.display.update()
+
 
 def drawCircleArc(screen,color,center,radius,startDeg,endDeg,thickness):
     (x,y) = center
@@ -39,33 +37,13 @@ while running:
   rad %= 2*pi
   degs = degrees(rad)
   
-  mouse2 = (mouse[0] , mouse[1] )
-  vector2 = (mouse2[0]-CENTER[0], mouse2[1]-CENTER[1])
-  distance2 = (vector2[0]**2 + vector2[1]**2)**0.5
   
-  vector = (mouse[0]-CENTER[0], mouse[1]-CENTER[1])
-  distance = (vector[0]**2 + vector[1]**2)**0.5
+  screen.fill((192,192,192))
+  pygame.draw.circle(screen, (71,153,192), CENTER, RADIUS - 5, 1)
+  drawCircleArc(screen,(128,128,128),CENTER,RADIUS, degs -10,degs + 10 ,10)
+  
+  clock.tick(30)
 
-  if distance > 0:
-    scalar = RADIUS / distance
-    satelliteCenter = (
-      int(round( CENTER[0] + vector[0]*scalar )),
-      int(round( CENTER[1] + vector[1]*scalar )) )
-  if distance > 0:
-      scalar = RADIUS / distance2
-      satelliteCenter2 = (
-              int(round( CENTER[0] + vector2[0]*scalar )),
-              int(round( CENTER[1] + vector2[1]*scalar )) )
-
- # screen.fill((152,206,231))
-  drawCircleArc(screen,(243,79,79),CENTER,RADIUS, degs + 90,degs + 100 ,10)
-#  pygame.draw.rect(screen, (243,79,79), pygame.Rect((satelliteCenter[0] - 2, 
-#                   satelliteCenter[1] + 1),(satelliteCenter[0] + 2,satelliteCenter[1] - 1)))
-#  pygame.draw.circle(screen, (71,153,192), CENTER, RADIUS)
-#  pygame.draw.circle(screen, (243,79,79), satelliteCenter, 16)
-#  pygame.draw.circle(screen, (243,79,79), satelliteCenter2, 16)
-#  pygame.draw.arc(screen, (243,79,79),(50,50,50,50), 90, 100)
-#  pygame.display.update()
-  pygame.display.flip()
+  pygame.display.update()
   
 pygame.quit()

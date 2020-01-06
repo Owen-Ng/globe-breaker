@@ -1,4 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Jan  4 22:22:21 2020
+
+@author: snige
+"""
+
 from __future__ import division 
+from math import atan2, degrees, pi
 import math
 import pygame
 
@@ -35,9 +43,9 @@ while running:
       angle += 2
   
   
-  screen.fill((192,192,192))
-  pygame.draw.circle(screen, (71,153,192), CENTER, RADIUS - 5, 1)
-  drawCircleArc(screen,(128,128,128),CENTER,RADIUS, angle -10,angle + 10 ,10)
+  screen.fill((152,206,231))
+  pygame.draw.circle(screen, (71,153,192), CENTER, RADIUS)
+  drawCircleArc(screen,(243,79,79),CENTER,RADIUS, angle -10,angle + 10 ,10)
   
   clock.tick(60)
 
