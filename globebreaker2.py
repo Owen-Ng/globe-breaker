@@ -13,7 +13,7 @@ satelliteCenter = (CENTER[0]+RADIUS, CENTER[1])
 satelliteCenter2 = (CENTER[0]+RADIUS , CENTER[1] )
 running = True
 
-
+        
 
 def drawCircleArc(screen,color,center,radius,startDeg,endDeg,thickness):
     (x,y) = center
@@ -40,6 +40,7 @@ while running:
   
   screen.fill((192,192,192))
   pygame.draw.circle(screen, (71,153,192), CENTER, RADIUS - 5, 1)
+
   drawCircleArc(screen,(128,128,128),CENTER,RADIUS, degs -10,degs + 10 ,10)
   
   clock.tick(30)
