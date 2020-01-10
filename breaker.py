@@ -3,6 +3,7 @@ import math
 import pygame
 background = pygame.image.load('pics/background.png')
 balld = pygame.image.load('pics/ball.png')
+blocks = pygame.image.load('pics/blocks.png')
 pygame.init()
 screen = pygame.display.set_mode((800, 800))
 pygame.display.set_caption("globebreaker")
@@ -10,7 +11,7 @@ pygame.display.set_caption("globebreaker")
 CENTER = (400, 400)
 RADIUS = 350
 clock = pygame.time.Clock()
-
+level1 = [(390,390), (410,410), (410, 390), (390,410)]
 class ball:
     def __init__(self, start_pos):
         self.position = start_pos
@@ -20,9 +21,11 @@ class ball:
         
         
 
-def redrawscreen(angle):
+def redrawscreen(angle, lvl):
       screen.blit(background, (0,0))
       pygame.draw.circle(screen, (0,0,0), CENTER, RADIUS - 5, 1)
+      for i in lvl:
+        screen.blit(blocks, i)
       drawCircleArc(screen,(0,0,0),CENTER,RADIUS, angle -10,angle + 10 ,10)
       pygame.display.update()
 
@@ -33,6 +36,7 @@ def drawCircleArc(screen,color,center,radius,startDeg,endDeg,thickness):
     endRad = math.radians(endDeg)
 
     pygame.draw.arc(screen,color,rect,startRad,endRad,thickness)
+    
     
 def game_loop(): 
     running = True
@@ -60,8 +64,7 @@ def game_loop():
 
       satelliteCenter = (CENTER[0] + (RADIUS )*math.cos(-angle), CENTER[1] + (RADIUS )*math.sin(-angle))
       clock.tick(60)
-    
-      redrawscreen(angle)
+      redrawscreen(angle, level1)
       ball1 = ball(satelliteCenter)
       ball1.draw()
   
